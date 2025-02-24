@@ -4,7 +4,7 @@
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Latest-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
-**TLDR:** An end-to-end machine learning project that predicts house prices with 88% accuracy using the Ames Housing dataset, featuring interactive visualizations and real-time predictions.
+**TLDR:** An end-to-end machine learning project that predicts house prices using the Ames Housing dataset, with predictions averaging within 11.9% of actual values. Features interactive visualizations and real-time price estimation through a user-friendly web interface.
 
 ## Project Overview
 
