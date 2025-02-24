@@ -1,81 +1,82 @@
-# House Price Prediction Dashboard
+\section{House Price Prediction}
 
-An interactive web application for predicting house prices using machine learning, built with Python, Scikit-learn, Plotly, and Streamlit.
+\textbf{TLDR:} An end-to-end machine learning project that predicts house prices using the Ames Housing dataset, featuring interactive visualizations and real-time predictions.
 
-## Project Overview
+\subsection{Project Overview}
 
-This project implements a machine learning model to predict house prices based on the Ames Housing dataset. The application includes:
-- Interactive data visualizations
-- Real-time price predictions
-- Model performance metrics
-- Feature importance analysis
+This project implements a machine learning solution to predict house prices based on key features from the Ames Housing dataset. The application combines data analysis, feature engineering, and model development to create an interactive web tool for real estate price estimation.
 
-## Features
+\subsection{Key Features}
 
-- **Data Analysis Dashboard:**
-  - House price distribution visualization
-  - Feature correlation heatmap
-  - Interactive scatter plots
-  - Price vs Living Area analysis
+\begin{itemize}
+  \item \textbf{Data Analysis Dashboard} with price distribution visualizations and correlation analysis
+  \item \textbf{Real-time Price Prediction} interface with user-friendly controls
+  \item \textbf{Model Performance Metrics} showing prediction accuracy and error analysis
+\end{itemize}
 
-- **Price Prediction:**
-  - Real-time price predictions
-  - User-friendly input interface
-  - Key feature selection
-  - Instant feedback
+\subsection{Technical Implementation}
 
-- **Model Performance:**
-  - Predicted vs Actual price comparisons
-  - Model accuracy metrics (R², RMSE, MAPE)
-  - Performance visualization
+\subsubsection{Data Analysis \& Feature Engineering}
 
-## Technologies Used
+The model leverages the most influential features identified through correlation analysis:
 
-- Python 3.x
-- Pandas & NumPy for data processing
-- Scikit-learn for machine learning
-- Plotly for interactive visualizations
-- Streamlit for web interface
-- Pickle for model serialization
+\begin{itemize}
+  \item Overall Quality (strongest correlation, r = 0.795)
+  \item Ground Living Area (r = 0.698)
+  \item Garage Cars (r = 0.644)
+  \item Total Basement SF (r = 0.612)
+  \item Year Built (r = 0.545)
+\end{itemize}
 
-## Installation
+Key preprocessing steps included median imputation for missing values and log transformation of the target variable to address skewed distribution and non-linear relationships.
 
-1. Clone the repository:
-```bash
+\subsubsection{Model Selection}
+
+Three models were evaluated:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|l|l|l|}
+\hline
+Model & RMSE & Notes \\
+\hline
+Linear Regression & \$41,826 & Good baseline but prone to overfitting \\
+Ridge ($\alpha$=10) & \$40,442 & Better handling of multicollinearity \\
+Lasso ($\alpha$=0.001) & \$40,352 & Selected as final model for best RMSE and feature selection \\
+\hline
+\end{tabular}
+\end{table}
+
+The final Lasso model delivers predictions within 11.9\% of actual values (MAPE) with an R² of 0.744.
+
+\subsection{Technologies Used}
+
+\begin{itemize}
+  \item Python 3.x with Pandas \& NumPy for data processing
+  \item Scikit-learn for machine learning
+  \item Plotly for interactive visualizations
+  \item Streamlit for web application
+  \item GitHub for version control
+  \item Streamlit Cloud for deployment
+\end{itemize}
+
+\subsection{Installation \& Usage}
+
+\begin{verbatim}
+# Clone repository
 git clone https://github.com/yourusername/house-price-prediction.git
 cd house-price-prediction
-```
 
-2. Install required packages:
-```bash
+# Install dependencies
 pip install -r requirements.txt
-```
 
-3. Run the Streamlit app:
-```bash
+# Launch application
 streamlit run app.py
-```
+\end{verbatim}
 
-## Model Details
+\subsection{Project Structure}
 
-- **Algorithm:** Lasso Regression
-- **Features Used:**
-  - Overall Quality
-  - Living Area
-  - Garage Capacity
-  - Year Built
-  - Basement Area
-  - Lot Area
-  - Full Bathrooms
-
-- **Performance Metrics:**
-  - R² Score: 0.744
-  - RMSE: $41,340.23
-  - MAPE: 11.9%
-
-## Project Structure
-
-```
+\begin{verbatim}
 house-price-prediction/
 ├── data/
 │   └── AmesHousing.csv
@@ -88,23 +89,21 @@ house-price-prediction/
 │   └── best_lasso_model.pkl
 ├── requirements.txt
 └── README.md
-```
+\end{verbatim}
 
-## Usage
+\subsection{Future Improvements}
 
-1. Navigate to the Data Analysis page to explore housing data trends
-2. Use the Price Prediction page to estimate house prices
-3. Check the Model Performance page for accuracy metrics
+\begin{itemize}
+  \item Implement ensemble methods (Random Forest, XGBoost)
+  \item Add confidence intervals for predictions
+  \item Include neighborhood analysis and comparable property suggestions
+  \item Enhance the explanation of feature impacts on price
+\end{itemize}
 
-## Contributing
+\subsection{License \& Acknowledgments}
 
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
-
-## License
-
-[MIT](https://choosealicense.com/licenses/mit/)
-
-## Acknowledgments
-
-- Dataset: Ames Housing dataset
-- Inspired by the Machine Learning Specialization by Andrew Ng
+\begin{itemize}
+  \item Licensed under MIT License
+  \item Based on principles from Andrew Ng's Machine Learning Specialization
+  \item Ames Housing dataset available on Kaggle
+\end{itemize}
