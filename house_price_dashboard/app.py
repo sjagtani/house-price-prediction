@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pickle
 
-# Load the saved model
+# Load model
 @st.cache_resource
 def load_model():
     try:
@@ -17,7 +17,7 @@ def load_model():
         st.error(f"Error loading model: {e}")
         return None
 
-# Load and cache data
+# Load & cache data
 @st.cache_data
 def load_data():
     df = pd.read_csv('AmesHousing.csv')
@@ -26,7 +26,7 @@ def load_data():
 def main():
     st.title('House Price Prediction Dashboard')
     
-    # Load data and model
+    # Load data & model
     df = load_data()
     model = load_model()
     
@@ -44,7 +44,7 @@ def main():
     if page == 'Data Analysis':
         st.header('Data Analysis')
         
-        # Price Distribution
+        # Price distribution
         st.subheader('House Price Distributions')
         fig = make_subplots(rows=1, cols=2,
                            subplot_titles=('Sale Price Distribution', 
@@ -65,7 +65,7 @@ def main():
         fig.update_layout(height=400, showlegend=False)
         st.plotly_chart(fig)
         
-        # Correlation Heatmap
+        # Correlation heatmap
         st.subheader('Feature Correlations')
         features = ['SalePrice', 'Overall Qual', 'Gr Liv Area', 
                    'Garage Cars', 'Total Bsmt SF', 'Year Built', 'Lot Area',
@@ -84,7 +84,7 @@ def main():
         fig.update_layout(height=600)
         st.plotly_chart(fig)
         
-        # Scatter Plot
+        # Scatter plot
         st.subheader('Price vs Living Area')
         fig = px.scatter(df, x='Gr Liv Area', y='SalePrice',
                         color='Overall Qual',
@@ -96,7 +96,7 @@ def main():
     elif page == 'Price Prediction':
         st.header('House Price Prediction')
         
-        # Input form
+        # Input
         col1, col2 = st.columns(2)
         
         with col1:
@@ -112,7 +112,7 @@ def main():
             
         if st.button('Predict Price'):
             try:
-                # Create input data
+                # Input data
                 input_data = pd.DataFrame({
                     'Overall Qual': [overall_qual],
                     'Gr Liv Area': [gr_liv_area],
@@ -123,7 +123,7 @@ def main():
                     'Full Bath': [full_bath]
                 })
                 
-                # Create engineered features
+                # Engineered features
                 input_data['TotalArea'] = input_data['Gr Liv Area'] + input_data['Total Bsmt SF']
                 input_data['LogLotArea'] = np.log(input_data['Lot Area'] + 1)
                 
@@ -136,10 +136,10 @@ def main():
             except Exception as e:
                 st.error(f"Error making prediction: {e}")
             
-    else:  # Model Performance page
+    else:  # Model performance
         st.header('Model Performance')
         
-        # Prepare features with engineering
+        # Prep features with engineering
         feature_cols = ['Overall Qual', 'Gr Liv Area', 'Garage Cars', 
                        'Total Bsmt SF', 'Year Built', 'Lot Area', 'Full Bath']
         
@@ -149,7 +149,7 @@ def main():
         X = X.fillna(X.mean())
         y = df['SalePrice']
         
-        # Get predictions using loaded model
+        # Get predictions
         y_pred_log = model.predict(X)
         y_pred = np.exp(y_pred_log) - 1
         
@@ -157,7 +157,7 @@ def main():
         st.subheader('Predicted vs Actual Prices')
         fig = go.Figure()
         
-        # Add scatter plot of predictions
+        # Scatter plot of predictions
         fig.add_trace(go.Scatter(
             x=y,
             y=y_pred,
@@ -166,7 +166,7 @@ def main():
             marker=dict(color='blue', size=8, opacity=0.6)
         ))
         
-        # Add perfect prediction line
+        # Perfect prediction line
         max_val = max(max(y), max(y_pred))
         min_val = min(min(y), min(y_pred))
         fig.add_trace(go.Scatter(
@@ -185,12 +185,12 @@ def main():
         
         st.plotly_chart(fig)
         
-        # Calculate and display metrics
+        # Calculate metrics
         r2 = np.corrcoef(y, y_pred)[0, 1]**2
         rmse = np.sqrt(np.mean((y - y_pred)**2))
         mape = np.mean(np.abs((y - y_pred) / y)) * 100
         
-        # Display metrics in columns
+        # Display metrics
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric('R² Score', f"{r2:.3f}")
