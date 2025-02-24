@@ -45,21 +45,38 @@ streamlit run app.py
 ### Example Usage
 
 ```python
-from src.predictor import HousePricePredictor
+# Load and prepare data
+import pandas as pd
+import numpy as np
+import pickle
 
 # Load the model
-predictor = HousePricePredictor()
+with open('best_lasso_model.pkl', 'rb') as file:
+    model = pickle.load(file)
 
 # Get a price estimate
-estimate = predictor.predict({
-    'Overall_Quality': 8,
-    'Gr_Liv_Area': 2000,
-    'Garage_Cars': 2,
-    'Year_Built': 2005,
-    'Total_Bsmt_SF': 1000
-})
+house_features = {
+    'Overall Qual': 8,
+    'Gr Liv Area': 2000,
+    'Garage Cars': 2,
+    'Year Built': 2005,
+    'Total Bsmt SF': 1000,
+    'Lot Area': 8000,
+    'Full Bath': 2
+}
 
-print(f"Estimated house price: ${estimate:.2f}")
+# Prepare features
+input_data = pd.DataFrame([house_features])
+
+# Add engineered features
+input_data['TotalArea'] = input_data['Gr Liv Area'] + input_data['Total Bsmt SF']
+input_data['LogLotArea'] = np.log(input_data['Lot Area'] + 1)
+
+# Make prediction
+y_pred_log = model.predict(input_data)
+estimate = np.exp(y_pred_log)[0] - 1
+
+print(f"Estimated house price: ${estimate:,.2f}")
 ```
 
 ## Technical Implementation
@@ -73,33 +90,27 @@ The model is built on extensive data analysis of 2,930 properties with 82 featur
 ```
 house-price-prediction/
 ├── data/
-│   └── AmesHousing.csv       # Dataset (2,930 properties)
+│   └── AmesHousing.csv
 ├── notebooks/
-│   ├── model_development.ipynb      # Model training & evaluation
-│   └── data_visualization.ipynb     # EDA & feature analysis
+│   ├── model_development.ipynb
+│   └── data_visualization.ipynb
 ├── src/
 │   ├── app.py                # Streamlit application
-│   ├── predictor.py          # Prediction module
-│   └── data_processor.py     # Data cleaning & preparation
 ├── models/
-│   └── best_lasso_model.pkl  # Trained model (11.9% MAPE)
-├── tests/                    # Unit & integration tests
+│   └── best_model.pkl        # Trained model (11.9% MAPE)
 ├── requirements.txt          # Dependencies
-├── LICENSE                   # MIT License
 └── README.md
 ```
 
 ## Technologies Used
 
-The project leverages Python 3.7+ with Pandas, NumPy, and Scikit-learn for core functionality. Visualizations are created using Plotly, Matplotlib, and Seaborn, while the web application is built with Streamlit and deployed via GitHub Actions and Streamlit Cloud. Testing is handled with Pytest.
+The project leverages Python with Pandas, NumPy, and Scikit-learn for core functionality. Interactive visualizations are created using Plotly, and the web application is built with Streamlit and deployed via Streamlit Cloud.
 
 ## Future Improvements
 
-Future enhancements include implementing gradient boosting for better accuracy, adding geospatial visualization of price trends, displaying prediction uncertainty through confidence intervals, tracking price changes over time with time-series analysis, and suggesting similar houses based on features.
+Future improvements to the project include experimenting with ensemble methods like Random Forest and XGBoost, implementing more sophisticated feature engineering, and adding cross-validation for hyperparameter tuning to enhance model performance. 
 
-## Contributing
-
-Contributions are welcome! Check out the [issues page](https://github.com/sjagtani/house-price-prediction/issues) for ways to contribute. The process involves forking the repository, creating your feature branch (`git checkout -b feature/amazing-feature`), committing your changes (`git commit -m 'Add some amazing feature'`), pushing to the branch (`git push origin feature/amazing-feature`), and opening a Pull Request.
+The application interface will be expanded to show confidence intervals for predictions, feature importance visualizations, and comparable property suggestions. User experience enhancements will focus on additional data visualizations, clearer explanations of feature impacts on price predictions, and the ability to export prediction results.
 
 ## License & Acknowledgments
 
