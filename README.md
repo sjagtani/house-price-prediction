@@ -14,7 +14,7 @@ This machine learning application predicts house prices based on the Ames Housin
 
 ## Key Features
 
-The application offers an interactive data dashboard for exploring housing trends through dynamic visualizations, a smart price predictor that provides accurate estimates with just a few clicks ($40,352 RMSE), feature impact analysis to understand exactly what drives property value in your area, and market comparison to see how properties stack up against similar listings.
+The application offers an interactive data dashboard for exploring housing trends through dynamic visualizations and a price predictor that provides estimates with just a few clicks ($40,352 RMSE). Users can also view model performance metrics and understand how different features impact house prices.
 
 ## Model Performance
 
