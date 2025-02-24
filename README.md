@@ -18,15 +18,15 @@ The application offers an interactive data dashboard for exploring housing trend
 
 ## Model Performance
 
-Our carefully engineered Lasso Regression model delivers exceptional results:
+Our carefully engineered Lasso Regression model delivers robust results:
 
-| Model | RMSE | Accuracy | Notes |
+| Model | RMSE | R² Score | Notes |
 |-------|------|----------|-------|
-| Linear Regression | $41,826 | 88.3% | Good baseline |
-| Ridge (α=10) | $40,442 | 88.8% | Handles multicollinearity |
-| **Lasso (α=0.001)** | **$40,352** | **88.9%** | **Best performance & feature selection** |
+| Linear Regression | $41,826 | 0.782 | Good baseline |
+| Ridge (α=10) | $40,442 | - | Handles multicollinearity |
+| **Lasso (α=0.001)** | **$40,352** | **0.744** | **Best performance & feature selection** |
 
-The final model accurately predicts house prices within 11.9% of actual values on average, with key features having the following impact: Overall Quality (+12% per quality point), Ground Living Area (+0.02% per square foot), Garage Cars (+7% per car space), and Year Built (+0.26% per year newer).
+The final model accurately predicts house prices within 11.9% of actual values on average (MAPE), with key features having the following impact: Overall Quality (+12% per quality point), Ground Living Area (+0.02% per square foot), Garage Cars (+7% per car space), and Year Built (+0.26% per year newer).
 
 ## Quick Start
 
