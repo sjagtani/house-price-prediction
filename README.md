@@ -46,23 +46,29 @@ streamlit run app.py
 
 ```python
 # Load and prepare data
+import os
 import pandas as pd
 import numpy as np
 import pickle
 
+# Setup paths
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_PATH, 'best_lasso_model.pkl')
+CSV_PATH = os.path.join(BASE_PATH, 'AmesHousing.csv')
+
 # Load the model
-with open('best_lasso_model.pkl', 'rb') as file:
-   model = pickle.load(file)
+with open(MODEL_PATH, 'rb') as file:
+    model = pickle.load(file)
 
 # Get a price estimate
 house_features = {
-   'Overall Qual': 8,
-   'Gr Liv Area': 2000,
-   'Garage Cars': 2,
-   'Year Built': 2005,
-   'Total Bsmt SF': 1000,
-   'Lot Area': 8000,
-   'Full Bath': 2
+    'Overall Qual': 8,
+    'Gr Liv Area': 2000,
+    'Garage Cars': 2,
+    'Year Built': 2005,
+    'Total Bsmt SF': 1000,
+    'Lot Area': 8000,
+    'Full Bath': 2
 }
 
 # Prepare features
@@ -96,15 +102,14 @@ house-price-prediction/
 ├── src/
 │   ├── app_copy.py
 ├── models/
-│   └── best_lasso_model.pkl	# Trained model (11.9% MAPE)
-├── requirements.txt          		# Dependencies
+│   └── best_lasso_model.pkl    # Trained model (11.9% MAPE)
+├── requirements.txt            # Dependencies
 ├── README.md
 └── house_price_dashboard/
-   ├── AmesHousing.csv
-   ├── app.py                			# Streamlit application
-   ├── best_lasso_model.pkl  	# Trained model (11.9% MAPE)
-   └── requirements.txt      		# Dependencies
-└── LICENSE
+    ├── AmesHousing.csv
+    ├── app.py                  # Streamlit application
+    ├── best_lasso_model.pkl    # Trained model (11.9% MAPE)
+    └── requirements.txt        # Dependencies
 ```
 
 ## Technologies Used
