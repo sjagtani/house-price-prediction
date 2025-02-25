@@ -1,6 +1,6 @@
 # House Price Prediction
 
-![Python](https://img.shields.io/badge/Python-3.7%2B-blue)
+![Python](https://img.shields.io/badge/Python-Latest-blue)
 ![Scikit-learn](https://img.shields.io/badge/Scikit--learn-Latest-orange)
 ![License](https://img.shields.io/badge/License-MIT-green)
 
@@ -52,17 +52,17 @@ import pickle
 
 # Load the model
 with open('best_lasso_model.pkl', 'rb') as file:
-    model = pickle.load(file)
+   model = pickle.load(file)
 
 # Get a price estimate
 house_features = {
-    'Overall Qual': 8,
-    'Gr Liv Area': 2000,
-    'Garage Cars': 2,
-    'Year Built': 2005,
-    'Total Bsmt SF': 1000,
-    'Lot Area': 8000,
-    'Full Bath': 2
+   'Overall Qual': 8,
+   'Gr Liv Area': 2000,
+   'Garage Cars': 2,
+   'Year Built': 2005,
+   'Total Bsmt SF': 1000,
+   'Lot Area': 8000,
+   'Full Bath': 2
 }
 
 # Prepare features
@@ -75,7 +75,6 @@ input_data['LogLotArea'] = np.log(input_data['Lot Area'] + 1)
 # Make prediction
 y_pred_log = model.predict(input_data)
 estimate = np.exp(y_pred_log)[0] - 1
-
 print(f"Estimated house price: ${estimate:,.2f}")
 ```
 
@@ -83,7 +82,7 @@ print(f"Estimated house price: ${estimate:,.2f}")
 
 ### Data Analysis & Feature Engineering
 
-The model is built on extensive data analysis of 2,930 properties with 82 features. After correlation analysis and feature engineering, we identified the most influential factors and applied transformations to improve prediction accuracy. This process included log transformation of target variable to address right-skewed distribution, median imputation for missing values, creation of composite features like TotalArea, and regularization to prevent overfitting.
+The model is built on extensive data analysis of 2,930 properties with 82 features. Our preprocessing pipeline includes log transformation of the target variable to address right-skewed distribution, median imputation for missing values, and strategic feature engineering. We created composite features like TotalArea (combining Ground Living Area and Total Basement SF) and LogLotArea, while using Lasso regularization for effective feature selection, resulting in a robust model that captures key property value drivers.
 
 ### Project Structure
 
