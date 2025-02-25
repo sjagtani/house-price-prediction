@@ -24,7 +24,7 @@ The application offers an interactive data dashboard for exploring housing trend
 | Ridge (α=10) | $40,442 | - | Handles multicollinearity |
 | **Lasso (α=0.001)** | **$40,352** | **0.744** | **Best performance & feature selection** |
 
-The final model accurately predicts house prices within 11.9% of actual values on average (MAPE), with key features having the following impact: Overall Quality (+12% per quality point), Ground Living Area (+0.02% per square foot), Garage Cars (+7% per car space), and Year Built (+0.26% per year newer).
+The final model predicts house prices with an average error margin of 11.9% (MAPE), demonstrating strong accuracy. Key factors influencing price estimates include Overall Quality (+12% per quality point), Ground Living Area (+0.02% per square foot), Garage Capacity (+7% per additional car space), and Year Built (+0.26% per year).
 
 ## Quick Start
 
