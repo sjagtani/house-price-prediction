@@ -18,8 +18,6 @@ The application offers an interactive data dashboard for exploring housing trend
 
 ## Model Performance
 
-The well-designed Lasso Regression model provides reliable results.
-
 | Model | RMSE | R² Score | Notes |
 |-------|------|----------|-------|
 | Linear Regression | $41,826 | 0.782 | Good baseline |
