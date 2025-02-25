@@ -40,3 +40,6 @@ env/
 # System Files
 .DS_Store
 Thumbs.db
+
+.DS_Store
+**/.DS_Store
