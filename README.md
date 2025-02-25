@@ -96,7 +96,7 @@ house-price-prediction/
 ├── src/
 │   ├── app.py                # Streamlit application
 ├── models/
-│   └── best_model.pkl        # Trained model (11.9% MAPE)
+│   └── best_lasso_model.pkl  # Trained model (11.9% MAPE)
 ├── requirements.txt          # Dependencies
 └── README.md
 ```
