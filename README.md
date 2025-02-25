@@ -8,7 +8,7 @@
 
 ## Project Overview
 
-This machine learning application predicts house prices based on the Ames Housing dataset, combining robust data analysis with an intuitive user interface. Real estate professionals, homeowners, and data enthusiasts can explore market trends and generate accurate price estimates in seconds.
+This machine learning application predicts house prices based on the Ames Housing dataset, combining robust data analysis with an intuitive user interface. After finishing Andrew Ng's Machine Learning specialization, I was eager to apply what I learned and put the concepts into practice. Hence, I started working on this project to gain practical experience and deepen my understanding.
 
 **Demo:** [View Live Application](https://sjagtani-house-price-prediction.streamlit.app/)
 
@@ -18,7 +18,7 @@ The application offers an interactive data dashboard for exploring housing trend
 
 ## Model Performance
 
-Our carefully engineered Lasso Regression model delivers robust results:
+The well-designed Lasso Regression model provides reliable results.
 
 | Model | RMSE | R² Score | Notes |
 |-------|------|----------|-------|
@@ -88,7 +88,7 @@ print(f"Estimated house price: ${estimate:,.2f}")
 
 ### Data Analysis & Feature Engineering
 
-The model is built on extensive data analysis of 2,930 properties with 82 features. Our preprocessing pipeline includes log transformation of the target variable to address right-skewed distribution, median imputation for missing values, and strategic feature engineering. We created composite features like TotalArea (combining Ground Living Area and Total Basement SF) and LogLotArea, while using Lasso regularization for effective feature selection, resulting in a robust model that captures key property value drivers.
+The model is built on extensive data analysis of 2,930 properties with 82 features. My preprocessing pipeline includes log transformation of the target variable to address right-skewed distribution, median imputation for missing values, and strategic feature engineering. I created composite features like TotalArea (combining Ground Living Area and Total Basement SF) and LogLotArea, while using Lasso regularization for effective feature selection, resulting in a robust model that captures key property value drivers.
 
 ### Project Structure
 
@@ -118,9 +118,9 @@ The project leverages Python with Pandas, NumPy, and Scikit-learn for core funct
 
 ## Future Improvements
 
-Future improvements to the project include experimenting with ensemble methods like Random Forest and XGBoost, implementing more sophisticated feature engineering, and adding cross-validation for hyperparameter tuning to enhance model performance. 
+Future improvements to the project will focus on enhancing both the technical performance and the overall user experience. I plan to experiment with ensemble methods such as Random Forest and XGBoost, incorporate advanced feature engineering, and introduce cross-validation for hyperparameter tuning to boost model performance. 
 
-The application interface will be expanded to show confidence intervals for predictions, feature importance visualizations, and comparable property suggestions. User experience enhancements will focus on additional data visualizations, clearer explanations of feature impacts on price predictions, and the ability to export prediction results.
+The application interface will be expanded to display confidence intervals for predictions and offer feature importance visualizations. I am also dedicated to refining the visual aesthetic of plots and the overall UI, ensuring a more engaging and intuitive experience.
 
 ## License & Acknowledgments
 
