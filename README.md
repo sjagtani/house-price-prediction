@@ -97,13 +97,13 @@ house-price-prediction/
 │   ├── app_copy.py
 ├── models/
 │   └── best_lasso_model.pkl	# Trained model (11.9% MAPE)
-├── requirements.txt          		# Dependencies
+├── requirements.txt          # Dependencies
 ├── README.md
 └── house_price_dashboard/
    ├── AmesHousing.csv
-   ├── app.py                			# Streamlit application
+   ├── app.py                	# Streamlit application
    ├── best_lasso_model.pkl  	# Trained model (11.9% MAPE)
-   └── requirements.txt      		# Dependencies
+   └── requirements.txt       # Dependencies
 └── LICENSE
 ```
 
