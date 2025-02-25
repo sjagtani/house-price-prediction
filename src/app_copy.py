@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -6,11 +7,16 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pickle
 
+# Determine the absolute path to the CSV file
+BASE_PATH = os.path.dirname(os.path.abspath(__file__))
+CSV_PATH = os.path.join(BASE_PATH, 'AmesHousing.csv')
+MODEL_PATH = os.path.join(BASE_PATH, 'best_lasso_model.pkl')
+
 # Load model
 @st.cache_resource
 def load_model():
     try:
-        with open('best_lasso_model.pkl', 'rb') as file:
+        with open(MODEL_PATH, 'rb') as file:
             model = pickle.load(file)
         return model
     except Exception as e:
@@ -20,8 +26,12 @@ def load_model():
 # Load & cache data
 @st.cache_data
 def load_data():
-    df = pd.read_csv('AmesHousing.csv')
-    return df
+    try:
+        df = pd.read_csv(CSV_PATH)
+        return df
+    except Exception as e:
+        st.error(f"Error loading data: {e}")
+        return None
 
 def main():
     st.title('House Price Prediction Dashboard')

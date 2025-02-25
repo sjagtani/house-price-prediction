@@ -33,7 +33,7 @@ The final model accurately predicts house prices within 11.9% of actual values o
 ```bash
 # Clone repository
 git clone https://github.com/sjagtani/house-price-prediction.git
-cd house-price-prediction
+cd house-price-prediction/house_price_dashboard
 
 # Install dependencies
 pip install -r requirements.txt
@@ -94,11 +94,17 @@ house-price-prediction/
 │   ├── model_development.ipynb
 │   └── data_visualization.ipynb
 ├── src/
-│   ├── app.py                # Streamlit application
+│   ├── app_copy.py
 ├── models/
-│   └── best_lasso_model.pkl  # Trained model (11.9% MAPE)
-├── requirements.txt          # Dependencies
-└── README.md
+│   └── best_lasso_model.pkl	# Trained model (11.9% MAPE)
+├── requirements.txt          		# Dependencies
+├── README.md
+└── house_price_dashboard/
+   ├── AmesHousing.csv
+   ├── app.py                			# Streamlit application
+   ├── best_lasso_model.pkl  	# Trained model (11.9% MAPE)
+   └── requirements.txt      		# Dependencies
+└── LICENSE
 ```
 
 ## Technologies Used
