@@ -7,7 +7,7 @@ import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 import pickle
 
-# Determine the absolute path to the CSV file
+# Determine absolute path
 BASE_PATH = os.path.dirname(os.path.abspath(__file__))
 CSV_PATH = os.path.join(BASE_PATH, 'AmesHousing.csv')
 MODEL_PATH = os.path.join(BASE_PATH, 'best_lasso_model.pkl')
